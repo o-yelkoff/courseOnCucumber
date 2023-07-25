@@ -2,7 +2,6 @@ package steps;
 
 import config.UserConfig;
 import io.cucumber.java.en.Then;
-import org.openqa.selenium.support.ui.Wait;
 import pages.BasicPage;
 
 public class BasicPageDef {
@@ -32,5 +31,15 @@ public class BasicPageDef {
     @Then("Account logo is displayed")
     public void accountLogoIsDisplayed() {
         basicPage.accountLogoVisible();
+    }
+
+    @Then("Insert book name in the search field")
+    public void insertBookNameInTheSearchField() {
+        basicPage.bookInputInSearch(UserConfig.selectedBook);
+    }
+
+    @Then("Find selected book")
+    public void findSelectedBook() {
+        basicPage.clickFindButton();
     }
 }
