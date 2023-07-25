@@ -15,5 +15,12 @@ Feature: E2E test
     Then Click cart icon
     Then Click goToOrders button
 
+    Then Check that we are on the Order page
+    Then Mark callBack checkbox
+    Then Select city in dropdown
+    Then Select post point
+    Then Select payment method
+    Then Leave the comment
+    Then Click confirmTheOrder button
 
-
+    Then Check that order is successful

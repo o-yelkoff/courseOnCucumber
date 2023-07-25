@@ -23,7 +23,9 @@ public class SearchResultPage {
     }
 
     public void clickGoToOrdersButton() {
+        $(By.xpath("//button[contains(text(), 'Перейти до оформлення замовлення')]")).shouldBe(Condition.visible);
         $(By.xpath("//button[contains(text(), 'Перейти до оформлення замовлення')]")).click();
     }
 
 }
+
