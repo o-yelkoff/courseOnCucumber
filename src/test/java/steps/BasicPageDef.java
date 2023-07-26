@@ -1,8 +1,12 @@
 package steps;
 
 import config.UserConfig;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import org.assertj.core.api.Assertions;
 import pages.BasicPage;
+import pages.SearchResultPage;
 
 public class BasicPageDef {
 
@@ -41,5 +45,26 @@ public class BasicPageDef {
     @Then("Find selected book")
     public void findSelectedBook() {
         basicPage.clickFindButton();
+    }
+
+    @Given("User is logged in")
+    public void userIsLoggedIn() {
+        basicPage.clickButtonByText(" Увійти ");
+        basicPage.inputLogin(UserConfig.USER_LOGIN);
+        basicPage.inputPassword(UserConfig.USER_PASSWORD);
+        basicPage.clickSubmitLogin();
+        basicPage.accountLogoVisible();
+        Assertions.assertThat(basicPage.accountLogoVisible()).isTrue();
+    }
+
+    @When("User add book in cart")
+    public void userAddBookInCart() {
+        basicPage.bookInputInSearch(UserConfig.selectedBook);
+        SearchResultPage searchResultPage = basicPage.clickFindButton();
+        searchResultPage.mouseHoveringOnBookCard();
+        searchResultPage.availabilityOfTheBook();
+        searchResultPage.clickAddToCartButton();
+        searchResultPage.clickCartButton();
+
     }
 }

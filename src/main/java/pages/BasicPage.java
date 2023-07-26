@@ -15,8 +15,9 @@ public class BasicPage {
         $(By.xpath("//div[@class='authorization-main']//button[@class= 'ui-btn-primary']")).click();
     }
 
-    public void accountLogoVisible() {
+    public boolean accountLogoVisible() {
         $(By.xpath("//div[@class= 'ui-btn-profile btn-profile']")).shouldBe(Condition.visible);
+        return $(By.xpath("//div[@class= 'ui-btn-profile btn-profile']")).is(Condition.visible);
     }
 
     public SelenideElement loginInput = $(By.xpath("//input[@name = 'auth_login']"));
@@ -36,7 +37,8 @@ public class BasicPage {
         this.searchField.val(text);
     }
 
-    public void clickFindButton() {
+    public SearchResultPage clickFindButton() {
         $(By.xpath("//button[contains(text(), 'Знайти')]")).click();
+        return new SearchResultPage();
     }
 }

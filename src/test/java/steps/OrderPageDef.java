@@ -1,7 +1,9 @@
 package steps;
 
 import config.UserConfig;
+import config.Utilities;
 import io.cucumber.java.en.Then;
+import org.assertj.core.api.Assertions;
 import pages.OrderPage;
 
 public class OrderPageDef {
@@ -19,7 +21,7 @@ public class OrderPageDef {
 
     @Then("Leave the comment")
     public void leaveTheComment() {
-        orderPage.commentAdding(UserConfig.ORDER_COMMENT);
+        orderPage.confirmButtonClick();
     }
 
 
@@ -31,11 +33,7 @@ public class OrderPageDef {
     @Then("Select post point")
     public void selectPostPoint() {
         orderPage.selectPostPoint();
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        Utilities.sleep(1000);
     }
 
     @Then("Select payment method")
@@ -45,5 +43,15 @@ public class OrderPageDef {
     @Then("Click confirmTheOrder button")
     public void clickConfirmTheOrderButton() {
         orderPage.confirmButtonClick();
+    }
+
+    @Then("User made an order of selected book")
+    public void userMadeAnOrderOfSelectedBook() {
+        orderPage.headerNameVisible();
+        Assertions.assertThat(orderPage.headerNameVisible()).isTrue();
+        orderPage.markCallBackOption();
+        orderPage.selectCityInDropdown();
+        orderPage.selectPostPoint();
+        orderPage.selectPaymentMethod();
     }
 }
