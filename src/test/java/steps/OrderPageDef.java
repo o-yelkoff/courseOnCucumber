@@ -21,7 +21,7 @@ public class OrderPageDef {
 
     @Then("Leave the comment")
     public void leaveTheComment() {
-        orderPage.confirmButtonClick();
+        orderPage.commentAdding(UserConfig.ORDER_COMMENT);
     }
 
 
@@ -53,5 +53,6 @@ public class OrderPageDef {
         orderPage.selectCityInDropdown();
         orderPage.selectPostPoint();
         orderPage.selectPaymentMethod();
+        orderPage.commentAdding(UserConfig.ORDER_COMMENT);
     }
 }
